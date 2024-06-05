@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="mobilebot">
+  
+  <link name="world"/>
+  <joint name="base_joint" type="fixed">
+	<parent link="world"/>
+	<child link="base_link"/>
+	<origin rpy="0 0 0" xyz="0.0 0.0 0.17"/>
+  </joint>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0404300725075066 -0.0663048725009987 0.0511887731145937"
+        rpy="0 0 0" />
+      <mass
+        value="0.24859660800008" />
+      <inertia
+        ixx="0.000134906513213239"
+        ixy="1.70917871519333E-20"
+        ixz="2.07105492647224E-06"
+        iyy="0.00020431595322241"
+        iyz="3.10595885357555E-21"
+        izz="0.000270803356315483" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobilebot/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobilebot/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Left_Wheel_Link">
+    <inertial>
+      <origin
+        xyz="3.46944695195361E-18 -0.005 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.00785398163397448" />
+      <inertia
+        ixx="8.99935395559577E-07"
+        ixy="1.03166546272473E-22"
+        ixz="-1.00366038567145E-38"
+        iyy="1.27627201552085E-06"
+        iyz="1.37902443340825E-39"
+        izz="8.99935395559577E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobilebot/meshes/Left_Wheel_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobilebot/meshes/Left_Wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leftjoint"
+    type="continuous">
+    <origin
+      xyz="0.024888 -0.026305 0.041168"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Left_Wheel_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="1"
+      velocity="1" />
+  </joint>
+  <link
+    name="Right_Wheel_Link">
+    <inertial>
+      <origin
+        xyz="3.46944695195361E-18 0.00499999999999999 -2.77555756156289E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.00785398163397447" />
+      <inertia
+        ixx="8.99935395559575E-07"
+        ixy="1.47908933302704E-22"
+        ixz="-3.32015267255829E-38"
+        iyy="1.27627201552085E-06"
+        iyz="-2.64375771602753E-21"
+        izz="8.99935395559575E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobilebot/meshes/Right_Wheel_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobilebot/meshes/Right_Wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rightjoint"
+    type="continuous">
+    <origin
+      xyz="0.024888 -0.1063 0.041168"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Right_Wheel_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="1"
+      velocity="1" />
+  </joint>
+  
+  
+<transmission name="Left_Wheel_Link">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="leftjoint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Left_Wheel_Link">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="Right_Wheel_Link">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="rightjoint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Right_Wheel_Link">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<gazebo reference="base_link">
+<selfCollide>true</selfCollide>
+</gazebo>
+</robot>
